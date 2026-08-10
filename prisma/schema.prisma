@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Consultation {
+  id            String   @id @default(uuid())
+  patientId     String
+  doctorId      String
+  startTime     DateTime @default(now())
+  endTime       DateTime?
+  status        String   @default("IN_PROGRESS")
+  diagnosis     String?
+  icdCode       String?
+  notes         String?
+  createdAt     DateTime @default(now())
+  
+  prescriptions Prescription[]
+}
+
+model Prescription {
+  id              String   @id @default(uuid())
+  consultationId  String
+  doctorId        String
+  status          String   @default("PENDING_PHARMACY")
+  validUntil      DateTime
+  items           Json
+  createdAt       DateTime @default(now())
+  
+  consultation    Consultation @relation(fields: [consultationId], references: [id])
+}
