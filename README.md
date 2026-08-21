@@ -1127,3 +1127,13 @@ INTEGRAÇÃO
 HMMV ERP — ERP Hospitalar Modular, Integrado e Orientado a Workflow.
 
 Status: DESENVOLVIMENTO ATIVO Objetivo: MVP SaaS ERP Hospitalar HMMV — arquitetura modular, workflow hospitalar ponta a ponta, segurança, auditoria e interoperabilidade.
+
+---
+
+## Log de Alterações Operacionais
+
+> Seção viva: cada execução real (correção, deploy, CI) é registrada aqui de forma aditiva. Nunca remover entradas anteriores — apenas acrescentar.
+
+### 2026-08-21
+- fix(security): removido `node_modules/` do versionamento; adicionado `.gitignore` (node_modules, dist, .env, *.log, coverage).
+- ci: adicionado pipeline GitHub Actions (`npm ci` + `prisma validate` + build/test condicionais).
